@@ -1,4 +1,5 @@
 function love.load()
+    love.window.setVSync(1)
     -- computerLeft is left side paddle
     -- playerRight is right side paddle
     computerLeft = {x = 20, y = 250, w = 15, h = 50, speed = 400}
