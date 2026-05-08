@@ -48,6 +48,15 @@ function love.update(dt)
 
     end
 
+    -- Movement of playerRight paddle
+    if love.keyboard.isDown("w") then 
+        playerRight.y = playerRight.y - playerRight.speed * dt
+    end 
+
+    if love.keyboard.isDown("s") then 
+        playerRight.y = playerRight.y + playerRight.speed * dt
+    end
+
     if love.keyboard.isDown("up") then 
         playerRight.y = playerRight.y - playerRight.speed * dt
     end
