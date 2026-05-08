@@ -1,5 +1,3 @@
-
-
 function love.load()
     -- computerLeft is left side paddle
     -- playerRight is right side paddle
@@ -9,9 +7,7 @@ function love.load()
 
 end 
 
-
 function love.update(dt)
-    
     
     -- Applying movement to the ball  
     ball.x = ball.x + ball.speedX * dt   
@@ -71,7 +67,7 @@ function love.update(dt)
         end
     end 
 
-
+    --Movement of the computer AI on left side of screen
     if computerLeft.y + computerLeft.h / 2 < ball.y then 
         computerLeft.y = computerLeft.y + computerLeft.speed * dt
     elseif computerLeft.y + computerLeft.h / 2 > ball.y then
@@ -89,4 +85,17 @@ function love.draw()
     love.graphics.rectangle("fill", computerLeft.x, computerLeft.y, computerLeft.w, computerLeft.h)
     love.graphics.rectangle("fill", playerRight.x, playerRight.y, playerRight.w, playerRight.h)
     love.graphics.circle("fill", ball.x, ball.y, 10)
+
+    local screenHeight = love.graphics.getHeight()
+    local width = love.graphics.getWidth()
+    local centerOfScreen = width / 2
+
+    local segmentLength = 2
+    local gapSize = 10
+
+    -- Looping from top to bottom of screen to create dotted line
+    for y = 0, screenHeight, (segmentLength + gapSize) do 
+        love.graphics.line(centerOfScreen, y, centerOfScreen, y + segmentLength)
+    end 
+
 end
