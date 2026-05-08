@@ -82,10 +82,6 @@ end
 
 
 function love.draw()
-    love.graphics.rectangle("fill", computerLeft.x, computerLeft.y, computerLeft.w, computerLeft.h)
-    love.graphics.rectangle("fill", playerRight.x, playerRight.y, playerRight.w, playerRight.h)
-    love.graphics.circle("fill", ball.x, ball.y, 10)
-
     local screenHeight = love.graphics.getHeight()
     local width = love.graphics.getWidth()
     local centerOfScreen = width / 2
@@ -95,7 +91,17 @@ function love.draw()
 
     -- Looping from top to bottom of screen to create dotted line
     for y = 0, screenHeight, (segmentLength + gapSize) do 
+        love.graphics.setColor(255, 255, 255)
         love.graphics.line(centerOfScreen, y, centerOfScreen, y + segmentLength)
     end 
 
+    local ballColor = {255, 255, 255}
+    love.graphics.setColor(ballColor)
+    love.graphics.circle("fill", ball.x, ball.y, 10)
+    local computerColor = {255, 0, 0}
+    love.graphics.setColor(computerColor)
+    love.graphics.rectangle("fill", computerLeft.x, computerLeft.y, computerLeft.w, computerLeft.h)
+    local playerColor = {0, 0, 255}
+    love.graphics.setColor(playerColor)
+    love.graphics.rectangle("fill", playerRight.x, playerRight.y, playerRight.w, playerRight.h)
 end
