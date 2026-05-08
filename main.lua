@@ -3,7 +3,7 @@ function love.load()
     -- computerLeft is left side paddle
     -- playerRight is right side paddle
     computerLeft = {x = 20, y = 250, w = 15, h = 50, speed = 400}
-    playerRight = {x = 760, y = 250, w = 15, h = 50, speed = 400}
+    playerRight = {x = 765, y = 250, w = 15, h = 50, speed = 400}
     ball = {x = 400, y = 300, speedX = 200, speedY = 200}
 
 end 
