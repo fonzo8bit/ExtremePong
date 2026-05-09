@@ -2,9 +2,10 @@ function love.load()
     love.window.setVSync(1)
     -- computerLeft is left side paddle
     -- playerRight is right side paddle
-    computerLeft = {x = 20, y = 250, w = 15, h = 50, speed = 400}
-    playerRight = {x = 765, y = 250, w = 15, h = 50, speed = 400}
-    ball = {x = 400, y = 300, speedX = 200, speedY = 200}
+    computerLeft = {x = 20, y = 250, w = 15, h = 80, speed = 200}
+    playerRight = {x = 765, y = 250, w = 15, h = 80, speed = 600}
+    ball = {x = 400, y = 300, speedX = 400, speedY = 300}
+    comOffset = 0
 
 end 
 
@@ -24,6 +25,7 @@ function love.update(dt)
        ball.y > computerLeft.y and ball.y < computerLeft.y + computerLeft.h then 
         ball.speedX = math.abs(ball.speedX)
         ball.x = computerLeft.x + 15
+        comOffset = love.math.random(-40,40)
     end
 
     -- Adding collision detection for player as well
@@ -66,16 +68,19 @@ function love.update(dt)
     end
 
     -- Difficulty of AI *May change later
-    local paddle1CenterY = computerLeft.y + computerLeft.h / 2
-    local deadzone = 10
+    if ball.x < 400 then
+     local comPaddleCenter = computerLeft.y + computerLeft.h / 2
+     local targetY = ball.y + comOffset
+     local zone = 10
 
-    if math.abs(paddle1CenterY - ball.y) > deadzone then
-        if paddle1CenterY < ball.y then
+      if math.abs(comPaddleCenter - targetY) > zone then
+        if comPaddleCenter < targetY then
             computerLeft.y = computerLeft.y + computerLeft.speed * dt
         else 
             computerLeft.y = computerLeft.y - computerLeft.speed * dt
         end
-    end 
+      end 
+    end
 
     --Movement of the computer AI on left side of screen
     if computerLeft.y + computerLeft.h / 2 < ball.y then 
