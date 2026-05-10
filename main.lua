@@ -110,6 +110,7 @@ function love.draw()
         love.graphics.line(centerOfScreen, y, centerOfScreen, y + segmentLength)
     end 
 
+    -- Colors for paddles and ball
     local ballColor = {255, 255, 255}
     love.graphics.setColor(ballColor)
     love.graphics.circle("fill", ball.x, ball.y, 10)
